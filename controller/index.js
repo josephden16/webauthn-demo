@@ -8,7 +8,7 @@ import {
 import {
   bufferToBase64URLString,
   base64URLStringToBuffer,
-} from "../utils/index.js";
+} from "@simplewebauthn/browser";
 import { v4 } from "uuid";
 import User from "../models/User.js";
 import PassKey from "../models/PassKey.js";
