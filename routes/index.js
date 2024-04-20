@@ -5,7 +5,7 @@ import {
   verifyRegistrationCtrl,
   generateAuthenticationOptionsCtrl,
   verifyAuthenticationCtrl,
-} from "../controller/index.js";
+} from "../controllers/index.js";
 
 const router = express.Router();
 
