@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import memoryStore from "memorystore";
 import session from "express-session";
 import morgan from "morgan";
+import router from "./routes/index.js";
 
 dotenv.config();
 const { PORT, MONGODB_URL } = process.env;
@@ -40,6 +41,8 @@ app.use(
     }),
   })
 );
+
+app.use("/api", router);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

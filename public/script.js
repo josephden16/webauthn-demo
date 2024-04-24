@@ -73,4 +73,70 @@ document.addEventListener("DOMContentLoaded", function () {
       errorDiv.textContent = "Oh no, something went wrong!";
     }
   }
+
+  async function handleLogin(evt) {
+    evt.preventDefault();
+    errorDiv.textContent = "";
+    errorDiv.style.display = "none";
+
+    const userName = usernameInput.value;
+
+    if (!browserSupportsWebAuthn()) {
+      return alert("This browser does not support WebAuthn");
+    }
+
+    const resp = await fetch(`/api/login/start?username=${userName}`, {
+      credentials: "include",
+      headers: {
+        "ngrok-skip-browser-warning": "69420",
+      },
+    });
+
+    if (!resp.ok) {
+      const error = (await resp.json()).error;
+      errorDiv.textContent = error;
+      errorDiv.style.display = "block";
+      return;
+    }
+
+    let asseResp;
+    try {
+      asseResp = await startAuthentication(await resp.json());
+    } catch (error) {
+      errorDiv.textContent = error.message;
+      errorDiv.style.display = "block";
+    }
+
+    if (!asseResp) {
+      errorDiv.textContent = "Failed to connect with your device";
+      errorDiv.style.display = "block";
+      return;
+    }
+
+    const verificationResp = await fetch(
+      `/api/login/verify?username=${userName}`,
+      {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "ngrok-skip-browser-warning": "69420",
+        },
+        body: JSON.stringify(asseResp),
+      }
+    );
+
+    const verificationJSON = await verificationResp.json();
+
+    if (verificationJSON && verificationJSON.verified) {
+      const userName = verificationJSON.username;
+      // Hide login form and show welcome message
+      loginForm.style.display = "none";
+      welcomeMessage.style.display = "block";
+      usernameDisplay.textContent = userName;
+    } else {
+      errorDiv.textContent = "Oh no, something went wrong!";
+      errorDiv.style.display = "block";
+    }
+  }
 });
