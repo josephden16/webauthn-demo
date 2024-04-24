@@ -42,7 +42,6 @@ app.use(
   })
 );
 
-// express routes
 app.use("/api", router);
 
 app.listen(PORT, () => {

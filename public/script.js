@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
   loginBtn.addEventListener("click", handleLogin);
 
   async function handleRegister(evt) {
-    evt.preventDefault();
     errorDiv.textContent = "";
     errorDiv.style.display = "none";
 

@@ -16,7 +16,7 @@ import PassKey from "../models/PassKey.js";
 // Human-readable title for your website
 const relyingPartyName = "WebAuthn Demo";
 // A unique identifier for your website
-const relyingPartyID = "sincere-jawfish-new.ngrok-free.app";
+const relyingPartyID = "";
 // The URL at which registrations and authentications should occur
 const origin = `https://${relyingPartyID}`;
 

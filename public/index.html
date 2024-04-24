@@ -23,7 +23,7 @@
     <div>
       <div id="error" role="alert"
         class="bg-red-600 text-white p-2 w-full my-3 rounded-md text-center font-bold hidden"></div>
-      <div id="loginForm" class="text-center">
+      <form id="loginForm" class="text-center">
         <input id="username" autocomplete="webauthn" type="text" placeholder="Username"
           class="w-[20rem] px-4 py-2 mb-4 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
         <div class="flex justify-center space-x-4">
@@ -32,7 +32,7 @@
           <button id="loginBtn" type="button"
             class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">Login</button>
         </div>
-      </div>
+      </form>
       <div id="welcomeMessage" class="hidden text-center">
         <h1 class="text-3xl font-bold mb-4">Welcome, <span id="usernameDisplay"></span>!</h1>
         <p class="text-lg text-gray-600">You are now logged in.</p>
